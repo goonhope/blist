@@ -7,10 +7,6 @@ on:
         description: '广东省市? 默认珠海, 可选广东各市（省=""）'
         required: true
         default: '珠海'
-      go:
-        description: "Whether the job should run"
-        type: boolean
-        default: true
   schedule:
     - cron: "30 10,17 * * 1-5"
         
