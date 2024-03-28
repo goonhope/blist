@@ -9,3 +9,4 @@ cchardet==2.1.7
 Faker==21.0.0
 openpyxl==3.1.2
 Requests==2.31.0
+fire
