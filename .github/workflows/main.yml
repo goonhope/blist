@@ -9,7 +9,7 @@ on:
         default: ''
         
 jobs:
-  classify:
+  get-:
     runs-on: ubuntu-latest
     steps:
     - name: pull
@@ -23,11 +23,6 @@ jobs:
       run: pip install -r requirements.txt
     - name: download
       run: python info_GDTZ.py get_blist "${{github.event.inputs.city}}"
-    - name : Upload
-      uses: actions/upload-artifact@master
-      with:
-        name: out
-        path: "list.xlsx"
     - name: Commit files
       run: |
         git config --local user.email "goonhope@gmail.com"
