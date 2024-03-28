@@ -71,7 +71,7 @@ def get_blist(city="珠海",num=2000):
     _,pages,titles = get_once(city=city,num=num)
     rows = get_once(pages,city=city,num=num)
     rows.insert(0,titles)
-    return rows
+    return 
 
 
 def get_once(pages=0,num=2000,city="珠海"):
@@ -117,7 +117,7 @@ def get_once(pages=0,num=2000,city="珠海"):
             time.sleep(random.uniform(1,1.618))
         if ohold: hold.extend(ohold)
         open_txt(hold,file=file)
-        return 
+        return hold
 
 
 def choose(hold,stri,c=1,cl=3):
