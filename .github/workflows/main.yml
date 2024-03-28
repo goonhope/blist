@@ -7,9 +7,15 @@ on:
         description: '广东省市? 默认省，如珠海'
         required: true
         default: ''
+      go:
+        description: "Whether the job should run"
+        type: boolean
+        default: true
+  schedule:
+    - cron: "30 10,17 * * 1-5"
         
 jobs:
-  get-:
+  get-list:
     runs-on: ubuntu-latest
     steps:
     - name: pull
@@ -22,7 +28,7 @@ jobs:
       #shell: cmd
       run: pip install -r requirements.txt
     - name: download
-      run: python info_GDTZ.py get_blist "${{github.event.inputs.city}}"
+      run: python info_GDTZ.py get_blist "${{'' if github.event_name == 'schedule' else github.event.inputs.city}}"
     - name: Commit files
       run: |
         git config --local user.email "goonhope@gmail.com"
