@@ -9,7 +9,7 @@
 
 from require import open_txt,google_hder as ghdr,post_,excel,json_to_list,time_from,post_while,CNUM
 import time, json, random
-
+from fire import Fire
 
 @excel(na="list.xlsx",t=1)
 def get_all_list(city="珠海",num=1000,inv=True):
@@ -126,5 +126,5 @@ def choose(hold,stri,c=1,cl=3):
 
 
 if __name__ == '__main__':
-    get_blist()
+    Fire()
 
