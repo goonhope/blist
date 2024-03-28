@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@Filename	:	 info_GDTZ.py
+@Filename	:	info_GDTZ.py
 @Created 	:	2019/04/14
 @Updated	:	2022/06/19
 @Author   	:	goonhope@gmail.com;Teddy;Zhuhai
@@ -117,7 +117,7 @@ def get_once(pages=0,num=2000,city="珠海"):
             time.sleep(random.uniform(1,1.618))
         if ohold: hold.extend(ohold)
         open_txt(hold,file=file)
-        return hold
+        return 
 
 
 def choose(hold,stri,c=1,cl=3):
