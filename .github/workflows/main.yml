@@ -6,7 +6,7 @@ on:
       city:
         description: '广东省市? 默认省，如珠海'
         required: true
-        default: ''
+        default: '珠海'
       go:
         description: "Whether the job should run"
         type: boolean
