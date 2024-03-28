@@ -71,7 +71,7 @@ def get_blist(city="珠海",num=2000):
     _,pages,titles = get_once(city=city,num=num)
     rows = get_once(pages,city=city,num=num)
     rows.insert(0,titles)
-    return 
+    return rows
 
 
 def get_once(pages=0,num=2000,city="珠海"):
