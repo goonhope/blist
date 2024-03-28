@@ -11,7 +11,8 @@ from require import open_txt,google_hder as ghdr,post_,excel,json_to_list,time_f
 import time, json, random
 from fire import Fire
 
-@excel(na="list.xlsx",t=1)
+
+@excel(na="投资备案.xlsx",t=1)
 def get_all_list(city="珠海",num=1000,inv=True):
     """获取投资备案或节能评估公示清单 From 20220709"""
     pages,_,titles = get_ilist(city=city,inv=inv,num=num)
@@ -64,7 +65,7 @@ def get_ilist(code="",city="珠海",inv=True,pages=0,num=1000,pr=None):
         return hold
 
 
-@excel(na="list.xlsx",t=False)
+@excel(na="备案.xlsx",t=False)
 def get_blist(city="珠海",num=2000):
     """获取技改备案公示清单 From 20220623"""
     _,pages,titles = get_once(city=city,num=num)
