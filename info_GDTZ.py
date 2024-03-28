@@ -6,9 +6,9 @@
 @Author   	:	goonhope@gmail.com;Teddy;Zhuhai
 @Function	:	投资、技改项目备案、节能评估数据抓取-for github
 """
-from Search.gd import CNUM
-from require import open_txt,google_hder as ghdr,post_,excel,json_to_list,time_from,post_while
-import time, json,random
+
+from require import open_txt,google_hder as ghdr,post_,excel,json_to_list,time_from,post_while,CNUM
+import time, json, random
 
 
 @excel(na="list.xlsx",t=1)

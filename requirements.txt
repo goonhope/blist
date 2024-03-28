@@ -1,0 +1,11 @@
+# python:      https://www.python.org/downloads/release/python-31011/
+# pycharm:   https://www.jetbrains.com/zh-cn/pycharm/download/#section=windows
+# pip:            python -m ensurepip --default-pip
+#                   https://bootstrap.pypa.io/get-pip.py
+# other:        pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple --trusted-host  mirrors.aliyun.com
+
+beautifulsoup4==4.12.3
+cchardet==2.1.7
+Faker==21.0.0
+openpyxl==3.1.2
+Requests==2.31.0
