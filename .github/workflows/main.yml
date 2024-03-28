@@ -27,7 +27,7 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: out
-        path: "${{github.event.inputs.class}}.xlsx"
+        path: "list.xlsx"
     - name: Commit files
       run: |
         git config --local user.email "goonhope@gmail.com"
