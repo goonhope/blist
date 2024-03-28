@@ -22,7 +22,7 @@ jobs:
       #shell: cmd
       run: pip install -r requirements.txt
     - name: download
-      run: python info_GDTZ.py get_class "${{github.event.inputs.city}}"
+      run: python info_GDTZ.py get_blist "${{github.event.inputs.city}}"
     - name : Upload
       uses: actions/upload-artifact@master
       with:
