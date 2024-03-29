@@ -1,4 +1,4 @@
-name: manually
+name: main
 
 on:
   workflow_dispatch:
