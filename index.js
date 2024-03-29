@@ -9,8 +9,10 @@
 
 import fetch from "node-fetch"
 //const { JSDOM } = require("jsdom");
-var ftime = (now=0,a=8)=> new Date(now || Date.now() + a * 3600 * 1000).toJSON().substr(0, 19).replace("T"," ");//时间
-var fnow = (now=0,i=1)=>{ var nnow =  new Date(now? now: Date.now()) ; return i ? nnow.getTime() : ftime(nnow)}; 
+var ftime = (now=0,a=8)=> new Date(now || Date.now() ));//时间
+var fnow = (now=0,i=1,a=8)=>{ 
+	var nnow =  new Date(now || Date.now() + a * 3600 * 1000) ;
+	return i ? nnow.getTime() : nnow.toJSON().substr(0, 19).replace("T"," ")}; 
 var strftime = l => l.map((x,i)=>"56".includes(i)?fnow(x,0):x);
 var toList =(y) => [Object.keys(y[0]), ...y.map(x=>strftime(Object.values(x)))].map(x=>x.toString()).join("\n");
 var toCsv = async (b="", ext="csv") => await llist(b).then(x=>toList(x));
