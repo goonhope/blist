@@ -23,7 +23,7 @@ jobs:
     - name: preload env
       run: pip install -r requirements.txt
     - name: download
-      run: python info_GDTZ.py get_blist "${{github.event_name == 'schedule' && '珠海' || github.event.inputs.city}}" > /dev/null
+      run: python info_GDTZ.py get_blist "${{github.event_name == 'schedule' && '珠海' || github.event.inputs.city}}" | grep @
     - name: Commit files
       run: |
         git config --local user.email "goonhope@gmail.com"
