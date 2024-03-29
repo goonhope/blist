@@ -1,0 +1,23 @@
+
+name: get_all_list
+on:
+  workflow_dispatch:     
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+       - name: check
+         uses: actions/checkout@master
+       - name: setup env
+         uses: actions/setup-node@v4
+         with:
+           node-version: '20'
+       - name: test
+         run: |
+           npm install npm node-fetch
+       - name : Upload artifact
+         uses: actions/upload-artifact@master
+         with:
+          name: list
+          path: list.csv
+           
