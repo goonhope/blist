@@ -4,7 +4,7 @@
 @Updated	:	2024/03/29
 @Author   	:	goonhope@gmail.com;Teddy;Zhuhai
 @Function	:	获取广东备案信息
-@Reference	:	JS 版本
+@Reference	:	node.js -> add  "type": "module"  to package.json file
 */
 
 import fetch from "node-fetch"
