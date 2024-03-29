@@ -2,9 +2,9 @@
 @Filename	:	index.js
 @Created 	:	2021/08/29
 @Updated	:	2024/03/29
-@Author   :	goonhope@gmail.com;Teddy;Zhuhai
+@Author   	:	goonhope@gmail.com;Teddy;Zhuhai
 @Function	:	获取广东备案信息
-@Reference:	JS 版本
+@Reference	:	JS 版本
 */
 
 import fetch from "node-fetch"
