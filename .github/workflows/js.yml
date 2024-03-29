@@ -1,5 +1,5 @@
 
-name: get_all_list
+name: manually
 on:
   workflow_dispatch:     
 jobs:
