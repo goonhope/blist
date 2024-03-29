@@ -15,6 +15,7 @@ jobs:
        - name: test
          run: |
            npm install npm node-fetch
+           node index.js > list.csv
        - name : Upload artifact
          uses: actions/upload-artifact@master
          with:
