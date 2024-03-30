@@ -23,18 +23,19 @@ var llist = async (b="", f=false) => { var hold = [], i = 0;
         var data =await fetch(url).then(r =>r.json()); // 加载选项数据
         var fdata = b? data.data.content.filter(x=>x.proCode && x.proCode.includes(b)): data.data.content;
         hold.push(...fdata);
-        //console.log("@Page " + i );
+        console.log("@Page " + i );
         if(f || (data.data.page === data.data.pages -1)){break;};
         i++;};
 return hold;};
 
-var buffer = xlsx.build([{name: 'mySheetName', data: data}]);
-var toxls = (data, name="list.xlsx") => fs.writeFile(name, 
-			xlsx.build([{name: 'list', data: data}]), 
+var wxlsx = (fdata, name="list.xlsx") => fs.writeFile(name, 
+			xlsx.build([{name: 'list', data: fdata}]), 
 			(err) => console.log(...(err?[err,"fail!"]:["done!"])));
 
-toxls().then().catch(err=>console.log(err)).finally()
-// toCsv()
-// 	.then(x=>console.log(x))
-// 	.catch(err=>console.log(err))
-// 	.finally();
+var toXlsx = async (b="",) => {var fdata = await llist(b).then(x=>toList(x)); wxlsx(fdata)};
+
+// toXlsx().then().catch(err=>console.log(err)).finally();
+toCsv()
+    .then(x=>console.log(x))
+    .catch(err=>console.log(err))
+    .finally();
