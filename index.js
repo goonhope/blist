@@ -7,8 +7,8 @@
 @Reference	:	node.js -> add  "type": "module"  to package.json file
 */
 import fetch from "node-fetch";
-import xlsx from "node-xlsx";
-import fs from "fs";
+// import xlsx from "node-xlsx";
+// import fs from "fs";
 
 //const { JSDOM } = require("jsdom");
 var fnow = (now=0,i=1,a=8)=>{ 
@@ -23,18 +23,20 @@ var llist = async (b="", f=false) => { var hold = [], i = 0;
         var data =await fetch(url).then(r =>r.json()); // 加载选项数据
         var fdata = b? data.data.content.filter(x=>x.proCode && x.proCode.includes(b)): data.data.content;
         hold.push(...fdata);
-        console.log("@Page " + i );
+        //console.log("@Page " + i );
         if(f || (data.data.page === data.data.pages -1)){break;};
         i++;};
 return hold;};
 
-var wxlsx = (fdata, name="list.xlsx") => fs.writeFile(name, 
-			xlsx.build([{name: 'list', data: fdata}]), 
-			(err) => console.log(...(err?[err,"fail!"]:["done!"])));
+/* var wxlsx = (fdata, name="list.xlsx") => fs.writeFile(name, 
+ 			xlsx.build([{name: 'list', data: fdata}]), 
+ 			(err) => console.log(...(err?[err,"fail!"]:["done!"])));
 
-var toXlsx = async (b="",) => {var fdata = await llist(b).then(x=>toList(x)); wxlsx(fdata)};
+ var toXlsx = async (b="",) => {var fdata = await llist(b).then(x=>toList(x)); wxlsx(fdata)};
 
-// toXlsx().then().catch(err=>console.log(err)).finally();
+ toXlsx().then().catch(err=>console.log(err)).finally();
+ */
+
 toCsv()
     .then(x=>console.log(x))
     .catch(err=>console.log(err))
