@@ -24,7 +24,7 @@ var llist = async (b="", f=false) => { var hold = [], i = 0;
         var fdata = b? data.data.content.filter(x=>x.proCode && x.proCode.includes(b)): data.data.content;
         hold.push(...fdata);
         //console.log("@Page " + i );
-        if(f || (data.data.page === data.data.pages -1)){break;};
+        if(f || (data.data.page === data.data.pages -1))break;
         i++;};
 return hold;};
 
