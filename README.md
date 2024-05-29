@@ -9,5 +9,5 @@
 ### `sponsor`
 <p>
     <img src=".\__pycache__\alipay.jpg"  height="200vm" style="object-fit:contain" alt="alipy"/>
-    <img src=".\__pycache__\wechat.jpg" height="200vm" style="object-fit:contain" alt="weichat pay"/>
+    <img src=".\__pycache__\wechat.jpg" height="210vm" style="object-fit:contain" alt="weichat pay"/>
 </p>
