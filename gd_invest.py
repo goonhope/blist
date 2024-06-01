@@ -62,7 +62,7 @@ class GD:
             v = [i for i in v if i and where in i[2]]
         self.hold = [self.k] + v
 
-    @excel(True, na="blist", t=False)
+    @excel(na="blist", t=False)
     def go(self,where='珠海'):
         """执行"""
         where, self.inv, *_ = where.split('_') + [""] * 2
