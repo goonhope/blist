@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       city:
-        description: '广东省市? 默认珠海（省=""）,投资: _BA，节能：_N'
+        description: '广东省市? 默认珠海（省=""）'
         required: true
         default: '珠海'
   schedule:
@@ -23,7 +23,7 @@ jobs:
     - name: preload env
       run: pip install -r requirements.txt
     - name: download
-      run: python gd_invest.py "${{github.event_name == 'schedule' && '珠海' || github.event.inputs.city}}" | grep "^[@h]"
+      run: python info_GDTZ.py get_blist "${{github.event_name == 'schedule' && '珠海' || github.event.inputs.city}}" | grep "^[@h]"
     - name: Commit files
       run: |
         git config --local user.email "goonhope@gmail.com"
