@@ -15,6 +15,30 @@ from bs4 import BeautifulSoup
 import os, requests, cchardet, os.path as op, random, time
 
 
+CNUM = {'广州': (200, '440100'), '韶关': (751, '440200'), '深圳': (755, '440300'),
+                '珠海': (756, '440400'), '汕头': (754, '440500'), '佛山': (757, '440600'),
+                '江门': (750, '440700'), '湛江': (759, '440800'), '茂名': (668, '440900'),
+                '肇庆': (758, '441200'), '惠州': (752, '441300'), '梅州': (753, '441400'),
+                '汕尾': (660, '441500'), '河源': (762, '441600'), '阳江': (662, '441700'),
+                '清远': (763, '441800'), '东莞': (769, '441900'), '中山': (760, '442000'),
+                '潮州': (768, '445100'), '揭阳': (663, '445200'), '云浮': (766, '445300')}
+
+
+def fetch(url="", hdrs=None, data=None, proxy=None, json=False,g=True,raw=False, tout=5):
+    """统一get post 默认get"""
+    url_headers = google_hder(url.split("/")[2])
+    if hdrs and isinstance(hdrs, dict): url_headers.update(hdrs)
+    proxy = random.choice(proxy) if isinstance(proxy, list) else proxy
+    way = requests.get if g else requests.post
+    kw = dict(headers=url_headers, timeout=tout, proxies=proxy, verify=False)
+    kw.update({"params" if g else "data": data})
+    data = way(url, **kw)
+    if data.status_code == 200:
+        data.encoding = cchardet.detect(data.content)['encoding']  # 网页编码utf8 or GB18030
+        return data.text if raw else (data.json() if json else BeautifulSoup(data.text, 'lxml'))
+    else: return print("@fetch check !")
+
+
 def excel(dir="", na="", t=True, r=True):
     """写入excel装饰器：xlsx or xls"""
     def ex_cel(func):
@@ -138,7 +162,7 @@ def post_while(url, hdrs, data, json=True, proxy=None, max=5):
             time.sleep(random.uniform(1, 3.14))
 
 
-def time_from(t=0, fmt="%Y%m%d %H:%M:%S", local=False):
+def time_from(t=0, fmt="%Y%m%d %H:%M:%S", local=True):
     """时间相互转换，时间戳与字符串"""
     if isinstance(t, (int, float)):
         flocal = time.gmtime if local else time.localtime
@@ -150,12 +174,10 @@ def time_from(t=0, fmt="%Y%m%d %H:%M:%S", local=False):
     else: return print("@t: int, float, str !") or False
 
 
-CNUM = {'广州': (200, '440100'), '韶关': (751, '440200'), '深圳': (755, '440300'),
-                '珠海': (756, '440400'), '汕头': (754, '440500'), '佛山': (757, '440600'),
-                '江门': (750, '440700'), '湛江': (759, '440800'), '茂名': (668, '440900'),
-                '肇庆': (758, '441200'), '惠州': (752, '441300'), '梅州': (753, '441400'),
-                '汕尾': (660, '441500'), '河源': (762, '441600'), '阳江': (662, '441700'),
-                '清远': (763, '441800'), '东莞': (769, '441900'), '中山': (760, '442000'),
-                '潮州': (768, '445100'), '揭阳': (663, '445200'), '云浮': (766, '445300')}
+def tsleep(max=0.,min=0.5):
+    """固定随机sleep时间"""
+    time.sleep(random.uniform(min, max) if max > min else min)
 
 
+if __name__ == '__main__':
+    print(time_from())
