@@ -9,8 +9,9 @@
 @WitNote	:	备注
 @Reference	:	引用
 """
-from require import CNUM, tsleep, open_txt, excel,fetch,time_from
+import json
 from fire import Fire
+from require import CNUM, tsleep, open_txt, excel,fetch,time_from,google_hder
 
 
 class GD:
@@ -32,9 +33,10 @@ class GD:
         while True:
             p = dict(size=self.s,page=self.p) if not self.inv else \
                  {"flag": "1", "nameOrCode": '', "pageSize": self.s, "city": '', "pageNumber": self.p + 1}
-            if (info := fetch(self.base,data=p, json=True,g=not self.inv)) and (info := info["data"]):
+            h = google_hder(self.hd) if self.inv else None
+            if (info := fetch(self.base, h, json.dumps(p), json=True,g=not self.inv)) and (info := info["data"]):
                 pages, c, content = [info.get(x) for x in self.i]
-                print(f"@items: {c}, list pages：{self.p}/{pages}")
+                print(f"@items: {c}, list pages: {self.p:02}/{pages}")
                 if content: self.hold.extend(self.dealx(content,self.inv))
                 if self.p == pages - 1 or self.b: break
                 else:self.p += 1; tsleep(2,1)
@@ -72,9 +74,9 @@ class GD:
         return self.hold
 
 
-def go(where='珠海'):
+def go(where='珠海',inv=''):
     """执行"""
-    GD().go(where)
+    GD(inv=inv).go(where)
 
 
 if __name__ == '__main__':
