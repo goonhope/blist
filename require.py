@@ -49,7 +49,7 @@ def excel(dir="", na="", t=True, r=True):
             _time_ = time.strftime("_%Y%m%d_%H%M%S") if t else ""
             titles = [x for x in list(kwargs.values()) + list(args) if x and isinstance(x, str) and len(x) < 6]
             farg = (f"{titles[0]}_" if titles else "") + na or "file"
-            out = _time_.join(op.splitext(farg)) if ".xls" in na.lower() else f'{farg}{_time_}.xls'
+            out = _time_.join(op.splitext(farg)) if ".xlsx" in na.lower() else f'{farg}{_time_}.xlsx'
             file_out = op.join(dir or os.path.dirname(__file__), out)
             excel_in(info, file_out, rc=r,creator="goonhope@gmail.com",title="备案信息")
             print(f"@{func.__name__}:\t[Time:{time.time() - start : 0.1f}s]")
