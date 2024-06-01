@@ -3,13 +3,14 @@
 @Filename	:	gd_invest.py
 @Created 	:	2019/04/14
 @Updated	:	2024/06/01
-@Author 		:	goonhope@gmail.com; Teddy; Zhuhai
+@Author 	:	goonhope@gmail.com; Teddy; Zhuhai
 @Function	:	广东技改备案、投资备案信息获取--自动更新
 @Process 	:	读取已有文本-> 获取json文件 -> 写入文件
 @WitNote	:	备注
 @Reference	:	引用
 """
 from require import CNUM, tsleep, open_txt, excel,fetch,time_from
+from fire import Fire
 
 
 class GD:
@@ -59,7 +60,7 @@ class GD:
             v = [i for i in v if i and where in i[2]]
         self.hold = [self.k] + v
 
-    @excel(True, na="blist", t=False)
+    @excel(na="blist", t=False)
     def go(self,where='珠海'):
         """技改备案执行"""
         if self.inv:
@@ -71,5 +72,10 @@ class GD:
         return self.hold
 
 
+def go(where='珠海'):
+    """执行"""
+    GD().go(where)
+
+
 if __name__ == '__main__':
-    GD().go()
+    Fire(go)
