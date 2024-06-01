@@ -65,7 +65,7 @@ class GD:
     @excel(na="blist", t=False)
     def go(self,where='珠海'):
         """执行"""
-        where, self.inv, *_ = where.split('_') + [""] * 2
+        where, inv, *_ = where.split('_') + [""] * 2
         if self.inv:
             self.base = r"https://gd.tzxm.gov.cn/tzxmspweb/api/publicityInformation/" + \
                         ("selectByPageBA" if 'BA' in self.inv else "selectJnscByPage")
@@ -76,8 +76,9 @@ class GD:
 
 
 def go(where='珠海'):
-    """执行"""
-    GD().go(where)
+    """执行 投资: _BA, 节能: _N"""
+    _, inv, *_ = where.split('_') + [""] * 2
+    GD(inv=inv).go(where)
 
 
 if __name__ == '__main__':
