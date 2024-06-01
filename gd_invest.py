@@ -62,9 +62,10 @@ class GD:
             v = [i for i in v if i and where in i[2]]
         self.hold = [self.k] + v
 
-    @excel(na="blist", t=False)
+    @excel(True, na="blist", t=False)
     def go(self,where='珠海'):
-        """技改备案执行"""
+        """执行"""
+        where, self.inv, *_ = where.split('_') + [""] * 2
         if self.inv:
             self.base = r"https://gd.tzxm.gov.cn/tzxmspweb/api/publicityInformation/" + \
                         ("selectByPageBA" if 'BA' in self.inv else "selectJnscByPage")
@@ -74,9 +75,9 @@ class GD:
         return self.hold
 
 
-def go(where='珠海',inv=''):
+def go(where='珠海'):
     """执行"""
-    GD(inv=inv).go(where)
+    GD().go(where)
 
 
 if __name__ == '__main__':
