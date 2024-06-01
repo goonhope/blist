@@ -46,9 +46,9 @@ class GD:
         """字典处理"""
         holdx = []
         for en,x in enumerate(hold):
-            if str(x.get("id")) != (self.o and self.o[1][0]) or (year and '2024' in x.get('finishDate')):
+            if str(x.get("id")) != (self.o and self.o[1][0]) and ('2024' in x.get('finishDate') if year else True):
                 info = {i:time_from(j / 1000) if 'Time' in i and isinstance(j,int) else
-                            str(j).strip() for i,j in x.items() if j and not isinstance(j, (dict,list))}
+                            str(j).replace('\t',' ').strip() for i,j in x.items() if j and not isinstance(j, (dict,list))}
                 holdx.append(info)
             else: self.b = True; break
         return holdx
