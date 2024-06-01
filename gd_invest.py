@@ -46,7 +46,7 @@ class GD:
         """字典处理"""
         holdx = []
         for en,x in enumerate(hold):
-            if str(x.get("id")) != (self.o and self.o[1][0]) and ('2024' in x.get('finishDate') if year else True):
+            if str(x.get("id")) != (self.o and len(self.o) >1 and self.o[1][0]) and ('2024' in x.get('finishDate') if year else True):
                 info = {i:time_from(j / 1000) if 'Time' in i and isinstance(j,int) else
                             str(j).replace('\t',' ').strip() for i,j in x.items() if j and not isinstance(j, (dict,list))}
                 holdx.append(info)
@@ -55,8 +55,8 @@ class GD:
 
     def deal(self,where=''):
         """数据处理"""
-        self.k = list(self.hold[0].keys()) if self.hold else self.o[0]
-        v = ([list(x.values()) for x in self.hold] if self.hold else []) + self.o[1:]
+        self.k = list(self.hold[0].keys()) if not self.o else self.o[0]
+        v = ([[x.get(i) for i in self.k] for x in self.hold] if self.hold else []) + self.o[1:]
         if v != self.o[1:]: open_txt([self.k] + v, self.of)
         if where and (where := CNUM.get(where)[-1].strip('0')):
             v = [i for i in v if i and where in i[2]]
