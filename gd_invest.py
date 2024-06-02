@@ -31,10 +31,10 @@ class GD:
     def get_list(self):
         """获取list"""
         while True:
-            p = dict(size=self.s,page=self.p) if not self.inv else \
-                 {"flag": "1", "nameOrCode": '', "pageSize": self.s, "city": '', "pageNumber": self.p + 1}
+            p = dict(size=self.s,page=self.p) if not self.inv else json.dumps(
+                 {"flag": f"1{'' if self.inv and self.inv == 'BA' else '3'}", "nameOrCode": '', "pageSize": self.s, "city": '', "pageNumber": self.p + 1})
             h = google_hder(self.hd) if self.inv else None
-            if (info := fetch(self.base, h, json.dumps(p), json=True,g=not self.inv)) and (info := info["data"]):
+            if (info := fetch(self.base, h, p, json=True,g=not self.inv)) and (info := info["data"]):
                 pages, c, content = [info.get(x) for x in self.i]
                 print(f"@items: {c}, list pages: {self.p:02}/{pages}")
                 if content: self.hold.extend(self.dealx(content,self.inv))
