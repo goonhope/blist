@@ -26,13 +26,11 @@ CNUM = {'广州': (200, '440100'), '韶关': (751, '440200'), '深圳': (755, '4
 
 def fetch(url="", hdrs=None, data=None, proxy=None, json=False,g=True,raw=False, tout=5):
     """统一get post 默认get"""
-    url_headers = google_hder(url.split("/")[2])
-    if hdrs and isinstance(hdrs, dict): url_headers.update(hdrs)
+    headers = google_hder(hdrs); headers.update(dict(Host=url.split("/")[2]))
     proxy = random.choice(proxy) if isinstance(proxy, list) else proxy
-    way = requests.get if g else requests.post
-    kw = dict(headers=url_headers, timeout=tout, proxies=proxy, verify=False)
+    kw = dict(method='GET' if g else 'POST',url=url,headers=headers, timeout=tout, proxies=proxy, verify=False)
     kw.update({"params" if g else "data": data})
-    data = way(url, **kw)
+    data = requests.request(**kw)
     if data.status_code == 200:
         data.encoding = cchardet.detect(data.content)['encoding']  # 网页编码utf8 or GB18030
         return data.text if raw else (data.json() if json else BeautifulSoup(data.text, 'lxml'))
