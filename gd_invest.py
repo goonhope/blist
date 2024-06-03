@@ -32,7 +32,7 @@ class GD:
         """获取list"""
         while True:
             p = dict(size=self.s,page=self.p) if not self.inv else json.dumps(
-                 {"flag": f"1{'' if self.inv and self.inv == 'BA' else '3'}", "nameOrCode": '', "pageSize": self.s, "city": '', "pageNumber": self.p + 1})
+                 {"flag": f"1{'3' if self.inv == 'N' else ''}", "nameOrCode": '', "pageSize": self.s, "city": '', "pageNumber": self.p + 1})
             h = google_hder(self.hd) if self.inv else None
             if (info := fetch(self.base, h, p, json=True,g=not self.inv)) and (info := info["data"]):
                 pages, c, content = [info.get(x) for x in self.i]
