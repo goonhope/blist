@@ -3,9 +3,9 @@
 @Filename	:	require.py
 @Created 	:	2024/03/28 15:17:52
 @Updated	:	2024/03/28 15:17:52
-@Author   :	goonhope@gmail.com; Teddy; Zhuhai
+@Author     :	goonhope@gmail.com; Teddy; Zhuhai
 @Function	:	required function ground
-@Process  :	read -> found -> extract -> done
+@Process    :	read -> found -> extract -> done
 @WitNote	:	by re
 @Reference :  Personal project
 """
