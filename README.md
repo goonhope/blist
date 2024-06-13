@@ -2,6 +2,7 @@
 
 
 - 获取[广东省工业企业技术改造监测系统](http://210.76.81.107/announcement)技改备案公示信息（自动更新）
+- [gd_invest.py](/gd_invest.py): 合并技改备案，投资备案，可选城市
 - [info_GDTZ.py](/info_GDTZ.py): json数据转为二维数组写入xlsx文件，可选城市
 - [index.js](/index.js)：js版本, 生成csv文件，需转码（utf8->gbk or ANSI）
   
