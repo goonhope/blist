@@ -160,11 +160,11 @@ def post_while(url, hdrs, data, json=True, proxy=None, max=5):
             time.sleep(random.uniform(1, 3.14))
 
 
-def time_from(t=0, fmt="%Y%m%d %H:%M:%S", local=True):
+def time_from(t=0, fmt="%Y%m%d %H:%M:%S", g=True):
     """时间相互转换，时间戳与字符串"""
     if isinstance(t, (int, float)):
-        flocal = time.gmtime if local else time.localtime
-        delta = 0 if local else 8 * 60 ** 2
+        flocal = time.gmtime if g else time.localtime
+        delta = 0 if not g else 8 * 60 ** 2
         return time.strftime(fmt, flocal(t + delta)) if t else time.strftime(fmt)
     elif isinstance(t, str):
         timeArray = time.strptime(t, fmt)
