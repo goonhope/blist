@@ -59,7 +59,7 @@ class GD:
         v = ([[x.get(i) for i in self.k] for x in self.hold] if self.hold else []) + self.o[1:]
         if v != self.o[1:]: open_txt([self.k] + v, self.of)
         if where and (where := CNUM.get(where)[-1].strip('0')):
-            v = [i for i in v if i and where in i[2]]
+            v = [i for i in v if i and i[2] and where in i[2]]
         self.hold = [self.k] + v
 
     @excel(na="blist", t=False)
