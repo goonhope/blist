@@ -65,7 +65,6 @@ class GD:
     @excel(na="blist", t=False)
     def go(self,where='珠海'):
         """执行"""
-        where, inv, *_ = where.split('_') + [""] * 2
         if self.inv:
             self.base = r"https://gd.tzxm.gov.cn/tzxmspweb/api/publicityInformation/" + \
                         ("selectByPageBA" if 'BA' in self.inv else "selectJnscByPage")
