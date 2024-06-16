@@ -5,7 +5,7 @@
 # other:        pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple --trusted-host  mirrors.aliyun.com
 
 beautifulsoup4==4.12.3
-cchardet==2.1.7 --only-binary :all: 
+cchardet --only-binary :all: 
 Faker==21.0.0
 openpyxl==3.1.2
 Requests==2.31.0
