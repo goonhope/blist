@@ -76,7 +76,7 @@ class GD:
 
 def go(where='珠海'):
     """执行 投资: _BA, 节能: _N"""
-    where, inv, *_ = where.split('_') + [""] * 2
+    where, inv, *_ = where.split('_') + [""] 
     GD(inv=inv).go(where)
 
 
