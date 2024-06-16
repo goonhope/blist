@@ -1,10 +1,10 @@
-name: manually
+name: node
 on:
   workflow_dispatch:  
   # schedule:
   #   - cron: "30 4 * * 1-5"
 jobs:
-  list:
+  node:
     runs-on: ubuntu-latest
     steps:
        - name: check
