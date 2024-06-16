@@ -1,4 +1,4 @@
-name: main
+name: update
 
 on:
   workflow_dispatch:
@@ -11,7 +11,7 @@ on:
     - cron: "30 2,7 * * 1-5"
         
 jobs:
-  get-list:
+  update:
     runs-on: ubuntu-latest
     steps:
     - name: pull
