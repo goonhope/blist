@@ -16,8 +16,8 @@ from require import CNUM, tsleep, open_txt, excel,fetch,time_from,google_hder
 
 class GD:
     """广东技改、投资备案"""
-    def __init__(self,size=2000,inv=""):
-        self.base,self.b,self.inv = 'http://210.76.81.107/api/recordNotice',False, inv
+    def __init__(self,size=2000,inv="",inn=''):
+        self.base,self.b,self.inv,self.inn = 'http://210.76.81.107/api/recordNotice',False, inv, inn
         self.k, self.hold, self.p, self.s, self.of = '', [], 0, size, f'blist{inv and "_"+ inv}.log'
         self.i, self.o = 'pages total content'.split(), open_txt(file=self.of)
         self.hd = {  # 'Cookie': 'SESSIONID=517F1ADC412EA4F00A7AE122066C7E12',
@@ -32,7 +32,7 @@ class GD:
         """获取list"""
         while True:
             p = dict(size=self.s,page=self.p) if not self.inv else json.dumps(
-                 {"flag": f"1{'3' if self.inv == 'N' else ''}", "nameOrCode": '', "pageSize": self.s, "city": '', "pageNumber": self.p + 1})
+                 {"flag": f"1{'3' if self.inv == 'N' else ''}", "nameOrCode": self.inn, "pageSize": self.s, "city": '', "pageNumber": self.p + 1})
             h = google_hder(self.hd) if self.inv else None
             if (info := fetch(self.base, h, p, json=True,g=not self.inv)) and (info := info["data"]):
                 pages, c, content = [info.get(x) for x in self.i]
