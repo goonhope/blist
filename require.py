@@ -23,7 +23,15 @@ CNUM = {'广州': (200, '440100'), '韶关': (751, '440200'), '深圳': (755, '4
                 '清远': (763, '441800'), '东莞': (769, '441900'), '中山': (760, '442000'),
                 '潮州': (768, '445100'), '揭阳': (663, '445200'), '云浮': (766, '445300')}
 
+def err(func):
+    """捕获异常装饰器"""
+    def inner(*args, **kwargs):
+        try:return func(*args, **kwargs)
+        except Exception as e: return print(f"@{func.__name__}:", e)
+    return inner
 
+
+@err
 def fetch(url="", hdrs=None, data=None, proxy=None, json=False,g=True,raw=False, tout=5):
     """统一get post 默认get"""
     headers = google_hder(hdrs); headers.update(dict(Host=url.split("/")[2]))
