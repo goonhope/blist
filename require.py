@@ -36,7 +36,7 @@ def fetch(url="", hdrs=None, data=None, proxy=None, json=False,g=True,raw=False,
     """统一get post 默认get"""
     headers = google_hder(hdrs); headers.update(dict(Host=url.split("/")[2]))
     proxy = random.choice(proxy) if isinstance(proxy, list) else proxy
-    kw = dict(headers=headers, timeout=tout, proxies=proxy, verify=True)
+    kw = dict(headers=headers, timeout=tout, proxies=proxy, verify=False)
     kw.update({"params" if g else "data": data})
     data = requests.request(method='GET' if g else 'POST',url=url,**kw)
     if data.status_code == 200:
