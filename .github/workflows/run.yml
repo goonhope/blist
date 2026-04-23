@@ -1,0 +1,47 @@
+name: fetch
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.repository }}
+  cancel-in-progress: false # 等待运行跑完
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: public
+      uses: actions/checkout@v6
+    - name: origin
+      run: git clone --depth 1 ${{ secrets.URL }} origin
+    - name: Setup python
+      uses: actions/setup-python@master
+      with:
+       python-version: '3.11'
+       cache: pip
+    - name: Chrome
+      uses: browser-actions/setup-chrome@v2
+      with:
+         chrome-version: stable
+    - name: require
+      run: cd origin && pip install -r requirements.txt
+    - name: fetch
+      run: |
+        cd origin && python cepc.py | awk -F'SHAPE: ' 'NF>1{print $2}'
+    - name: Commit & push
+      run: |
+        cd origin
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+        git add .
+        git commit -am "Update from ${{ github.repository }} $(TZ='Asia/Shanghai' date '+%D %T')" || echo "No changes"
+        git push origin main > /dev/null 2>&1 && echo "Push done!"
+    - name: Delete workflow runs
+      uses: Mattraks/delete-workflow-runs@v2
+      with:
+        token: ${{ github.token }}
+        repository: ${{ github.repository }}
+        retain_days: 1
+        keep_minimum_runs: 2
