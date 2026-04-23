@@ -1,4 +1,4 @@
-name: fetch
+name: new
 
 on:
   workflow_dispatch:
@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: false # 等待运行跑完
 
 jobs:
-  fetch:
+  new:
     runs-on: ubuntu-latest
 
     steps:
