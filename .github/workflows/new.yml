@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: public
-      uses: actions/checkout@v6
+    # - name: public
+    #   uses: actions/checkout@v6
     - name: origin
       run: git clone --depth 1 ${{ secrets.URL }} origin
     - name: Setup python
