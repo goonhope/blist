@@ -3,7 +3,7 @@ name: new
 on:
   workflow_dispatch:
   schedule:
-    - cron: "7/30 10-23 * * *"
+    - cron: "7 10-23 * * *"
 
 concurrency:
   group: ${{ github.repository }}
