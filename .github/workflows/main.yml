@@ -7,8 +7,8 @@ on:
         description: '广东省市? 默认珠海（省=""）'
         required: true
         default: '珠海'
-  # schedule:
-  #   - cron: "30 2,7 * * 1-5"
+  schedule:
+    - cron: "30 2,7 * * 1-5"
         
 jobs:
   update:
